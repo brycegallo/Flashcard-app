@@ -69,10 +69,37 @@ public class Flashcard {
         }
     }
 
-    public double GetAccuracyRate() {
+    public double getAccuracyRate() {
         if (timesReviewed == 0) {
             return 0.0
         }
         return (double) timesCorrect / timesReviewed;
+    }
+
+    // Override equals() for better case-specific comparison
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o = null || getClass() != o.getClass()) {
+            return false;
+        }
+        Flashcard flashcard = (Flashcard) o;
+        return Objects.equals(question, flashcard.question) && Objects.equals(answer, flashcard.answer);
+    }
+
+    // Override hashCode for better case-specific comparison
+    public int hashCode() {
+        return Objects.hash(question, answer);
+    }
+
+    // Override toString() for easier debugging
+    public String toString() {
+        return "Flashcard" +
+                "question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", accuracy=" + String.format("%.1f%%", getAccuracyRate() * 100) +
+                ", reviewed=" + timesReviewed + " times" +
+                '}';
     }
 }
