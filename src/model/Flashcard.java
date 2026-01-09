@@ -47,5 +47,32 @@ public class Flashcard {
         return timesCorrect;
     }
 
-    // TODO: Add setters, other functions
+    // Setters
+    // // Setter for question
+    public void setQuestion(String question) {
+        if (question == null || question.trim().isEmpty()) {
+            throw new IllegalArgumentException("Question cannot be empty");
+        }
+        this.question = question.trim();
+    }
+    // // Setter for answer
+    if (answer == null || answer.trim().isEmpty()) {
+        throw new IllegalArgumentException("Answer cannot be empty");
+    }
+    this.answer = answer.trim();
+
+    // Method to update card review count and correct answer count
+    public void recordReview(boolean correct) {
+        timesReviewed++;
+        if (correct) {
+            timesCorrect++;
+        }
+    }
+
+    public double GetAccuracyRate() {
+        if (timesReviewed == 0) {
+            return 0.0
+        }
+        return (double) timesCorrect / timesReviewed;
+    }
 }
